@@ -1,0 +1,344 @@
+.profile-container{
+    align-items: unset;
+    min-height: 100vh;
+}
+
+.content{
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Start SideBar */
+.sidebar{
+    padding-top: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px #ddd;
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    max-width: 300px;
+}
+
+.sidebar .home h2{
+    text-align: center;
+    position: relative;
+    margin: 50px;
+}
+
+.sidebar .home h2::before{
+    position: absolute;
+    content: '';
+    height: 3px;
+    width: 80%;
+    background-color: black;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.sidebar .home h2::after{
+    position: absolute;
+    content: '';
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: 6px solid white;
+    background-color: black;
+    bottom: -21px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.sidebar .page{
+    display: block;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 20px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.sidebar .page:hover{
+    padding-left: 30px;
+}
+
+.sidebar .current{
+    background: #ccc;
+    padding: 20px;
+    padding-left: 30px;
+}
+
+/* End SideBar */
+
+/* Start Content */
+.content{
+    flex: 3;
+}
+
+.header{
+    padding: 0 20px;
+    border-bottom: 3px solid #ccc;
+    background-color: white;
+}
+
+.links > ul > li{
+    margin-right: 30px;
+}
+
+.links > ul > li:first-of-type{
+    position: relative;
+    margin-right: 35px;
+}
+
+.links > ul > li:first-of-type::after{
+    position: absolute;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: "\f0d7";
+    top: 50%;
+    transform: translateY(-50%) translateX(calc(100% + 5px));
+    right: 0;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.links > ul > li a{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.links > ul > li > a{
+    height: 72px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s;
+}
+
+.links > ul > li:hover > a,
+.links > ul > li:hover:after
+{
+    color: #0075ff;
+}
+
+.links > ul > li:hover:after{
+    transform: translateY(-50%) translateX(calc(100% + 5px)) rotate(180deg)
+}
+
+.profile-icon{
+    flex: 1;
+}
+
+.profile-icon img{
+    width: 70px;
+    margin-left: auto;
+    display: block;
+    cursor: pointer;
+}
+
+
+.page-content .form-profile{
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 300px;
+    max-width: 1000px;
+}
+
+.page-content .blue-btn{
+    bottom: 20px;
+    right: 30px;
+    position: absolute;
+}
+/* End Content */
+
+/* Start Requests  */
+
+/* .page-request > h2{
+    margin: 50px;
+    font-size: 36px;
+}
+
+.request{
+    margin: 50px;
+    position: relative;
+    padding: 20px 0;
+    background: white;
+    min-height: 500px;
+} */
+
+.request .btns{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.request .table{
+    margin-top: 50px;
+    padding: 0 30px;
+}
+
+.request .table .flex{
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 0;
+}
+
+.request .table .flex:not(.flex:last-of-type){
+    border-bottom: 2px solid #eee;
+}
+
+.request .table .flex .status{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+/* End Requests  */
+
+/* Start teams */
+.teams{
+    padding: 20px 40px;
+}
+
+.teams > h3{
+    margin: 20px 0;
+    font-size: 26px;
+}
+
+.teams table{
+    width: 100%;
+    text-align: left;
+    border-spacing: 0;
+}
+
+.teams table th{
+    background-color: #ddd;
+}
+
+.teams table td:not(td:last-of-type){
+    border: 1px solid #eee;
+}
+
+.teams table th,
+.teams table td{
+    padding: 20px;
+}
+
+.teams table td .blue-btn{
+    width: fit-content;
+    margin-right: auto;
+}
+/* End teams */
+
+/* Start Feedback&Rating */
+.overall{
+    background: white;
+    width: fit-content;
+    margin: auto;
+}
+
+.overall .img{
+    margin-bottom: 20px;
+}
+
+.overall .img img{
+    width: 250px;
+    border-radius: 50%;
+}
+
+.overall h3{
+    margin: 20px;
+}
+
+.overall h3:last-of-type{
+    font-size: 16px;
+    color: #777;
+}
+
+.feedback .profile-content{
+    background-color: transparent;
+}
+
+.feedback .card{
+    background-color: white;
+    border-radius: 0;
+    text-align: justify;
+    border: none;
+    height: fit-content;
+}
+
+.feedback .card .info{
+    margin-bottom: 20px;
+}
+
+.feedback .card .info img{
+    width: 100px;
+    margin-right: 10px;
+}
+.feedback .card .info h3{
+    flex: 1;
+}
+
+.feedback .card .text{
+    margin: 20px 0;
+}
+.feedback .card .text h3{
+    margin-bottom: 10px;
+}
+.feedback .card .text p{
+    margin-bottom: 10px;
+    color: #777;
+    line-height: 1.7;
+}
+
+.feedback .card .date{
+    justify-content: space-between;
+    color: #ccc;
+    border-top: 1px solid #eee;
+    padding: 10px 0;
+    margin-top: 30px;
+}
+/* End Feedback&Rating */
+
+/* Start Create Team */
+.create-team .gender h2{
+    margin-bottom: 10px;
+}
+
+.create-team .input-data .box::before{
+    top: 7px;
+}
+.create-team .input-data .box::after{
+    top: 6px;
+}
+/* End Create Team */
+
+/* Start Leave Feedback */
+.leave-feedback select{
+    width: 200px;
+    font-size: 20px;
+    color: #333;
+    outline: none;
+    border: 1px solid #ddd;
+}
+
+.leave-feedback textarea{
+    width: 350px;
+    height: 250px;
+    padding: 8px 10px;
+    background-color: #eee;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    resize: none;
+    color: #777;
+}
+
+.leave-feedback .stars i{
+    cursor: pointer;
+}
+/* End Leave Feedback */
+
+

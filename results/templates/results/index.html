@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade12Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'results/css/normalize.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'results/css/all.min.css' %}"> -->
+    <style>
+        .container{
+            width: fit-content;
+            margin: auto;
+            padding: 100px;
+        }
+        form{
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form class="container-fluid">
+            <div class="form-group">
+              <label for="formGroupExampleInput">رقم الجلوس</label>
+              <input type="text" class="form-control" id="seatNo" placeholder="123456789" name="seatNo">
+            </div>
+            <input type="submit" value="submit" class="btn btn-primary">
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            const form =  document.querySelector('form')
+                form.addEventListener('submit', function(e){
+                    e.preventDefault()
+                    let t = document.querySelector('.table')
+                    if (t) {
+                        t.remove()
+                    }
+                    id = document.querySelector('#seatNo').value
+                    fetch(`${id}`)
+                    .then(response => response.json())
+                    .then(result => {
+                        console.log(result)
+                        const table = document.createElement('table')
+                        table.className = 'table'
+                        table.innerHTML = `
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">رقم الجلوس</th>
+                                            <th scope="col">الاسم</th>
+                                            <th scope="col">الدرجه الكلي</th>
+                                            <th scope="col">الحاله</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>`
+                        document.querySelector('.container').append(table)
+                        
+                        result['results'].forEach((e) => {
+                            const name =  e['name']
+                            const seat =  e['seatNo']
+                            const degree =  e['degree']
+                            const state =  e['state']
+
+
+                            
+                            const data = `
+                                            <tr>
+                                                <th scope="row">${seat}</th>
+                                                <td>${name}</td>
+                                                <td>${degree}</td>
+                                                <td>${state}</td>
+                                            </tr>
+                            `
+                            document.querySelector('tbody').innerHTML += data
+                        })
+                        
+                    })
+                    return false
+                })
+            })
+    </script>
+</body>
+</html>
