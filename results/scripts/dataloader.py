@@ -3,6 +3,7 @@ import os
 from results.models import grades
 import time
 from .bot_sender import send_registered
+import sys
 
 def run():
     current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -34,7 +35,7 @@ def run():
             num += 1
         print(f"Creating records Time : {time.time() - start_time}")
         start_time = time.time()
-        grades.objects.bulk_create(records)
+        grades.objects.bulk_create(records, batch_size=200000)
         print(f"Inserting records Time : {time.time() - start_time}")
         start_time = time.time()
         send_registered()
