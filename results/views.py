@@ -33,12 +33,12 @@ def bot_result(request):
     start_time = time.time()
     if request.headers.get('content-type') == 'application/json':
         try:
-            logging.info("Request initialized")
+            logging.warning("Request initialized")
             json_string = loads(request.body.decode('utf-8'))
             update = telebot.types.Update.de_json(json_string)
             bot.process_new_updates([update])
-            logging.info("Request Done")
-            logging.info(f"Request takes : {time.time() - start_time} seconds")
+            logging.warning("Request Done")
+            logging.warning(f"Request takes : {time.time() - start_time} seconds")
             return HttpResponse("ok")
         except Exception as e:
             print(e)
@@ -52,13 +52,13 @@ def is_available_data():
 @bot.message_handler(func=lambda msg: is_available_data())
 def get_data(message):
     start_time = time.time()
-    logging.info("Processing Data")
+    logging.warning("Processing Data")
     if "/" in message.text:
         bot.reply_to(message, "ارسل رقم الجلوس")
         return
     id = message.text.split(',')
     name =  f"{message.from_user.first_name} {message.from_user.last_name}"
-    logging.info(f"Data process takes : {time.time() - start_time} seconds")
+    logging.warning(f"Data process takes : {time.time() - start_time} seconds")
     for seat in id:
         try :
             start_time = time.time()
@@ -69,14 +69,14 @@ def get_data(message):
                 print(text)
                 print('========')
                 bot.reply_to(message, text)
-            logging.info(f"Sending Process takes : {time.time() - start_time} seconds")
+            logging.warning(f"Sending Process takes : {time.time() - start_time} seconds")
         except Exception as e :
             print(str(e))
             print(f'Error with {seat}')
 
 @bot.message_handler(func=lambda msg: not is_available_data())
 def register_data(message):
-    logging.info("Registering Data")
+    logging.warning("Registering Data")
     try:
         chat_id = message.chat.id
         text = message.text
