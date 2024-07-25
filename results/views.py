@@ -5,6 +5,7 @@ from .models import grades, listed_seats
 from .utils import get_grades, parse_grades
 import telebot
 from json import loads
+import logging
 
 bot = telebot.TeleBot("1156662740:AAEWzSmMZkdRiwlBX_fmLxdMeUuPQgE3ETM")
 bot.delete_webhook(drop_pending_updates=True)
@@ -30,9 +31,11 @@ def result(request, id):
 def bot_result(request):
     if request.headers.get('content-type') == 'application/json':
         try:
+            logging.error("Request initialized")
             json_string = loads(request.body.decode('utf-8'))
             update = telebot.types.Update.de_json(json_string)
             bot.process_new_updates([update])
+            logging.error("Request Done")
             return HttpResponse("ok")
         except Exception as e:
             print(e)
@@ -45,6 +48,7 @@ def is_available_data():
 
 @bot.message_handler(func=lambda msg: is_available_data())
 def get_data(message):
+    logging.error("Processing Data")
     id = message.text.split(',')
     name =  f"{message.from_user.first_name} {message.from_user.last_name}"
     for seat in id:
@@ -62,6 +66,7 @@ def get_data(message):
 
 @bot.message_handler(func=lambda msg: not is_available_data())
 def register_data(message):
+    logging.error("Registering Data")
     try:
         chat_id = message.chat.id
         text = message.text
