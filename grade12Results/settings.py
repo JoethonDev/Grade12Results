@@ -89,21 +89,21 @@ DATABASES = {
     #     'ENGINE': 'django.db.backends.sqlite3',
     #     'NAME': BASE_DIR / 'db.sqlite3',
     # }
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Joethon$grade12',
-        'USER': 'Joethon',
-        'PASSWORD': '74927104gO!',
-        'HOST': 'Joethon.mysql.pythonanywhere-services.com'
-    }
     # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'joethon_grade12',
-    #     'USER': 'joethon',
-    #     'PASSWORD': '74927104g',
-    #     'HOST': 'postgresql-joethon.alwaysdata.net',
-    #     'PORT': '5432'
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'Joethon$grade12',
+    #     'USER': 'Joethon',
+    #     'PASSWORD': '74927104gO!',
+    #     'HOST': 'Joethon.mysql.pythonanywhere-services.com'
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'joedev_grade',
+        'USER': 'joedev',
+        'PASSWORD': '74927104g',
+        'HOST': 'postgresql-joedev.alwaysdata.net',
+        'PORT': '5432'
+    }
 }
 
 

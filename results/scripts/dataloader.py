@@ -1,4 +1,5 @@
-import pandas as pd
+# import pandas as pd
+import openpyxl
 import os
 from results.models import grades
 import time
@@ -16,17 +17,20 @@ def run():
     try:
         # Read the Excel file into a DataFrame
         start_time = time.time()
-        df = pd.read_excel(excel_file_path, usecols=['seating_no', 'arabic_name', 'total_degree', 'student_case_desc'], engine='openpyxl')
+        df = openpyxl.load_workbook(excel_file_path)
+        sheet = df.active
         print(f"Read File Time : {time.time() - start_time}")
         num = 1
         records = []
+        header = [cell.value.strip() for cell in sheet[1]]
         start_time = time.time()
-        for index, row in df.iterrows() :
-        # Filter the DataFrame based on the "seating_no" column
-            name = row['arabic_name']
-            degree = row['total_degree']
-            state = row['student_case_desc']
-            seatNo = row['seating_no']
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            values = dict(zip(header, row))
+            # Filter the DataFrame based on the "seating_no" column
+            name = values['arabic_name']
+            degree = values['total_degree']
+            state = values['student_case_desc']
+            seatNo = values['seating_no']
             records.append(
                 grades(name=name, totalDegree=degree, state=state, seat_no=seatNo)
             )
@@ -35,11 +39,11 @@ def run():
             num += 1
         print(f"Creating records Time : {time.time() - start_time}")
         start_time = time.time()
-        grades.objects.bulk_create(records, batch_size=250000)
+        grades.objects.bulk_create(records)
         print(f"Inserting records Time : {time.time() - start_time}")
         start_time = time.time()
         send_registered()
-        print(f"Sening Results records Time : {time.time() - start_time}")
+        print(f"Sending Results records Time : {time.time() - start_time}")
         print('done')
 
     except Exception as e:
