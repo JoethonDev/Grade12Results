@@ -16,7 +16,6 @@ def index(request):
 
 def result(request, id):
     id = id.split(',')
-    print(id)
     resultsView = []
     for seat in id:
         try :
@@ -63,10 +62,12 @@ def get_data(message):
 
 @bot.message_handler(func=lambda msg: not is_available_data())
 def register_data(message):
-    print("Hello")
     try:
         chat_id = message.chat.id
         text = message.text
+        if "/" in text:
+            bot.reply_to(message, "ارسل رقم الجلوس ليتم تسجيله")
+            return
         listed_seats.objects.create(seat=text, chat_id=chat_id)
         bot.reply_to(message, "تم تسجيل طلبك بنجاح ستيم وصلك النتيجه فور اظهارها")
     except Exception as e:
