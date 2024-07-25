@@ -49,6 +49,9 @@ def is_available_data():
 @bot.message_handler(func=lambda msg: is_available_data())
 def get_data(message):
     logging.error("Processing Data")
+    if "/" in message.text:
+        bot.reply_to(message, "ارسل رقم الجلوس ليتم تسجيله")
+        return
     id = message.text.split(',')
     name =  f"{message.from_user.first_name} {message.from_user.last_name}"
     for seat in id:
