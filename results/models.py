@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class results(models.Model):
+class grades(models.Model):
     seat_no = models.IntegerField()
     totalDegree = models.IntegerField()
     name = models.CharField(max_length=3200)
@@ -14,3 +14,7 @@ class results(models.Model):
             'degree' : self.totalDegree,
             'state' : self.state
         }
+    
+class listed_seats(models.Model):
+    seat = models.CharField(max_length=300)
+    chat_id = models.IntegerField()
