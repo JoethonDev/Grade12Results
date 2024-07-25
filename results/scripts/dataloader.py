@@ -35,7 +35,7 @@ def run():
             num += 1
         print(f"Creating records Time : {time.time() - start_time}")
         start_time = time.time()
-        grades.objects.bulk_create(records, batch_size=200000)
+        grades.objects.bulk_create(records, batch_size=250000)
         print(f"Inserting records Time : {time.time() - start_time}")
         start_time = time.time()
         send_registered()
