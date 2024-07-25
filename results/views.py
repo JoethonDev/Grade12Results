@@ -5,6 +5,7 @@ from .models import grades, listed_seats
 from .utils import get_grades, parse_grades
 import telebot
 from json import loads
+import time
 import logging
 
 bot = telebot.TeleBot("1156662740:AAEWzSmMZkdRiwlBX_fmLxdMeUuPQgE3ETM")
@@ -29,13 +30,15 @@ def result(request, id):
 
 @csrf_exempt
 def bot_result(request):
+    start_time = time.time()
     if request.headers.get('content-type') == 'application/json':
         try:
-            logging.error("Request initialized")
+            logging.info("Request initialized")
             json_string = loads(request.body.decode('utf-8'))
             update = telebot.types.Update.de_json(json_string)
             bot.process_new_updates([update])
-            logging.error("Request Done")
+            logging.info("Request Done")
+            logging.info(f"Request takes : {time.time() - start_time} seconds")
             return HttpResponse("ok")
         except Exception as e:
             print(e)
@@ -48,14 +51,17 @@ def is_available_data():
 
 @bot.message_handler(func=lambda msg: is_available_data())
 def get_data(message):
-    logging.error("Processing Data")
+    start_time = time.time()
+    logging.info("Processing Data")
     if "/" in message.text:
         bot.reply_to(message, "ارسل رقم الجلوس ليتم تسجيله")
         return
     id = message.text.split(',')
     name =  f"{message.from_user.first_name} {message.from_user.last_name}"
+    logging.info(f"Data process takes : {time.time() - start_time} seconds")
     for seat in id:
         try :
+            start_time = time.time()
             results = get_grades(seat)
             print(f'Telegram User : {name}')
             for result in results :
@@ -63,13 +69,14 @@ def get_data(message):
                 print(text)
                 print('========')
                 bot.reply_to(message, text)
+            logging.info(f"Sending Process takes : {time.time() - start_time} seconds")
         except Exception as e :
             print(str(e))
             print(f'Error with {seat}')
 
 @bot.message_handler(func=lambda msg: not is_available_data())
 def register_data(message):
-    logging.error("Registering Data")
+    logging.info("Registering Data")
     try:
         chat_id = message.chat.id
         text = message.text
