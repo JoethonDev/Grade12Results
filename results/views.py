@@ -9,7 +9,7 @@ import logging
 
 bot = telebot.TeleBot("1156662740:AAEWzSmMZkdRiwlBX_fmLxdMeUuPQgE3ETM")
 bot.delete_webhook(drop_pending_updates=True)
-bot.set_webhook("https://Joethon.pythonanywhere.com/bot")
+bot.set_webhook("https://joedev.alwaysdata.net/bot")
 
 # Create your views here.
 def index(request):
