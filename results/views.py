@@ -54,7 +54,7 @@ def get_data(message):
     start_time = time.time()
     logging.info("Processing Data")
     if "/" in message.text:
-        bot.reply_to(message, "ارسل رقم الجلوس ليتم تسجيله")
+        bot.reply_to(message, "ارسل رقم الجلوس")
         return
     id = message.text.split(',')
     name =  f"{message.from_user.first_name} {message.from_user.last_name}"
