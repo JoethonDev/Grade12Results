@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-f6zgek!2#arf*3c7@=w3e_6yu_1k(pqxakoeb#848se0@pwz0y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', "joethon.alwaysdata.net"]
+ALLOWED_HOSTS = ['127.0.0.1', "joethon.alwaysdata.net", "joethon.pythonanywhere.com"]
 
 
 # Application definition
@@ -91,11 +91,10 @@ DATABASES = {
     # }
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'joethon_grade12',
+        'NAME': 'Joethon$grade12',
         'USER': 'Joethon',
         'PASSWORD': '74927104gO!',
-        'HOST': 'Joethon.mysql.pythonanywhere-services.com',
-        'PORT': '5432'
+        'HOST': 'Joethon.mysql.pythonanywhere-services.com'
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
