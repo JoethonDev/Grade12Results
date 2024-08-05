@@ -10,7 +10,7 @@ def run():
     current_directory = os.path.dirname(os.path.abspath(__file__))
 
     # Replace 'your_excel_file.xlsx' with the actual name of your Excel file
-    excel_file_name = 'results_1.xlsx'
+    excel_file_name = 'results.xlsx'
 
     # Construct the full path to the Excel file
     excel_file_path = os.path.join(current_directory, excel_file_name)
